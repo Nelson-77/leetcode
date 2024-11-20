@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char mainString[100], subString[100];
+    char *result;
+
+    // Input the main string and the substring
+    printf("Enter the main string: ");
+    fgets(mainString, sizeof(mainString), stdin);
+    
+    // Remove the newline character added by fgets, if any
+    mainString[strcspn(mainString, "\n")] = '\0';
+
+    printf("Enter the substring to search: ");
+    fgets(subString, sizeof(subString), stdin);
+    
+    // Remove the newline character added by fgets, if any
+    subString[strcspn(subString, "\n")] = '\0';
+
+    // Use strstr to check if substring exists within the main string
+    result = strstr(mainString, subString);
+
+    if (result != NULL) {
+        printf("Substring found at position: %ld\n", result - mainString);
+    } else {
+        printf("Substring not found\n");
+    }
+
+    return 0;
+}
