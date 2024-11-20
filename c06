@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+int compareStrings(const char *str1, const char *str2) {
+    // Loop through both strings until we find a mismatch or reach the end of either string
+    while (*str1 != '\0' && *str2 != '\0') {
+        if (*str1 < *str2) {
+            return -1; // str1 is lexicographically smaller
+        } else if (*str1 > *str2) {
+            return 1;  // str1 is lexicographically larger
+        }
+        str1++;
+        str2++;
+    }
+    
+    // If we reach here, one of the strings has ended.
+    // If both are of the same length, they are equal, else the shorter one is smaller.
+    if (*str1 == '\0' && *str2 == '\0') {
+        return 0;  // Strings are equal
+    } else if (*str1 == '\0') {
+        return -1; // str1 is lexicographically smaller (because str1 ended)
+    } else {
+        return 1;  // str2 is lexicographically smaller (because str2 ended)
+    }
+}
+
+int main() {
+    char str1[100], str2[100];
+
+    // Take input strings from the user
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+
+    printf("Enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+
+    // Remove newline character if present
+    str1[strcspn(str1, "\n")] = '\0';
+    str2[strcspn(str2, "\n")] = '\0';
+
+    // Compare the strings
+    int result = compareStrings(str1, str2);
+
+    if (result == 0) {
+        printf("The strings are equal.\n");
+    } else if (result < 0) {
+        printf("The first string is lexicographically smaller.\n");
+    } else {
+        printf("The first string is lexicographically larger.\n");
+    }
+
+    return 0;
+}
