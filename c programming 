@@ -1,0 +1,49 @@
+Sure! Here's a simple C program to determine the length of a string without using any library functions:
+
+#include <stdio.h>
+
+// Function to find the length of a string
+int stringLength(char str[]) {
+    int length = 0;
+    
+    // Loop through each character of the string until null character '\0'
+    while (str[length] != '\0') {
+        length++;
+    }
+    
+    return length;
+}
+
+int main() {
+    char str[100];
+
+    // Input string from the user
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    // Call stringLength function and display the result
+    int len = stringLength(str);
+    printf("The length of the string is: %d\n", len);
+
+    return 0;
+}
+
+Explanation:
+
+1. stringLength Function: This function takes a string as input and iterates through each character, incrementing a counter until the null character \0 is reached, which marks the end of the string.
+
+
+2. Input: The program uses fgets to read the input string, which is safer than gets because it avoids buffer overflow.
+
+
+3. Output: The length of the string is printed after calling the stringLength function.
+
+
+
+Example:
+
+Enter a string: Hello World
+The length of the string is: 11
+
+This program correctly calculates the length of the string without using any built-in string handling functions like strlen.
+
